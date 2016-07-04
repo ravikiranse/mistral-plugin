@@ -57,7 +57,6 @@ class { '::mistral':
   keystone_tenant           => $keystone_tenant,
   auth_uri                  => $auth_uri,
   identity_uri              => $identity_uri,
-  use_syslog                => $use_syslog,   
   verbose                   => $verbose,
   debug                     => $debug,
 }

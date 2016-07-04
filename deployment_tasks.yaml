@@ -118,7 +118,7 @@
 - id: mistral-service
   version: 2.0.0
   type: puppet
-  groups: [mistral]
+  groups: [primary-mistral, mistral]
   requires: [mistral-rabbitmq, mistral-haproxy, mistral-db, mistral-keystone]
   required_for: [deploy_end]
   cross-depends:

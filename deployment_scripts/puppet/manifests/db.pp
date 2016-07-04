@@ -11,9 +11,9 @@ $mysql_root_user     = pick($mysql_hash['root_user'], 'root')
 $mysql_db_create     = pick($mysql_hash['db_create'], true)
 $mysql_root_password = $mysql_hash['root_password']
 
-$db_user             = pick($mistral_hash['metadata']['db_user'], 'mistral')
-$db_name             = pick($mistral_hash['metadata']['db_name'], 'mistral')
-$db_password         = pick($mistral_hash['metadata']['db_password'], $mysql_root_password)
+$db_user             = pick($mistral_hash['db_user'],'mistral')
+$db_name             = pick($mistral_hash['db_name'],'mistral')
+$db_password         = $mistral_hash['db_password']
 
 $db_host             = pick($mistral_hash['metadata']['db_host'], $database_vip, 'localhost')
 $db_create           = pick($mistral_hash['metadata']['db_create'], $mysql_db_create)
@@ -24,7 +24,7 @@ $allowed_hosts = [ 'localhost', '127.0.0.1', '%' ]
 
 if $mistral_enabled and $db_create {
 
-  class { '::openstack::galera::client':
+  class { 'galera::client':
     custom_setup_class => hiera('mysql_custom_setup_class', 'galera'),
   }
 
@@ -41,7 +41,7 @@ if $mistral_enabled and $db_create {
     db_password   => $db_root_password,
   }
 
-  Class['::openstack::galera::client'] ->
+  Class['galera::client'] ->
     Class['::osnailyfacter::mysql_access'] ->
       Class['::mistral::db::mysql']
 

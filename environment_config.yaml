@@ -2,6 +2,7 @@ attributes:
   metadata:
     group: 'openstack_services'
     label: "Mistral Settings"
+    rabbit_user: "mistral"
   db_password:
     label: 'Database Password'
     description: 'Mistral Database user password'
@@ -38,4 +39,3 @@ attributes:
     restrictions:
       - action: hide
         condition: settings:fuel-plugin-mistral.metadata.enabled == false
-  rabbit_user: "mistral"
