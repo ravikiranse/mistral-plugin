@@ -34,7 +34,7 @@ $identity_uri               = "${internal_auth_protocol}://${internal_auth_addre
 
 $keystone_tenant            = pick($mistral_hash['metadata']['tenant'],'services')
 $keystone_user              = $mistral_hash['mistral_username']
-$keystone_user_password     = $mistral_hash['mistral_user_password']
+$keystone_user_password     = $mistral_hash['user_password']
 
 $api_bind_host              = get_network_role_property('mistral/api', 'ipaddr')
 $tenant                     = pick($mistral_hash['tenant'], 'services')

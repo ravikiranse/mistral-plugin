@@ -8,14 +8,14 @@ $mistral_enabled        = pick($mistral_hash['metadata']['enabled'], false)
 if ($mistral_enabled) {
   validate_string($rabbit_password)
   $virtual_host         = '/'
-  $user_permissions     = "$rabbit_userid@$virtual_host"
+  #$user_permissions     = "$rabbit_userid@$virtual_host"
 
   rabbitmq_user { $rabbit_userid:
      admin                => true,
      password             => $rabbit_password,
      provider             => 'rabbitmqctl',
   }
-  rabbitmq_user_permissions { $user_permissions:
+  rabbitmq_user_permissions { "$rabbit_userid@$virtual_host":
      configure_permission => '.*',
      write_permission     => '.*',
      read_permission      => '.*',

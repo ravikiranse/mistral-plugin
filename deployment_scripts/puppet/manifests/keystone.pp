@@ -15,7 +15,7 @@ $admin_protocol      = 'http'
 $admin_address       = hiera('management_vip')
 $region              = pick($mistral_hash['metadata']['region'], hiera('region', 'RegionOne'))
 
-$password            = pick($mistral_hash['metadata']['user_password'], 'password')
+$password            = pick($mistral_hash['user_password'], 'password')
 $auth_name           = pick($mistral_hash['metadata']['auth_name'], 'mistral')
 $configure_endpoint  = pick($mistral_hash['metadata']['configure_endpoint'], true)
 $configure_user      = pick($mistral_hash['metadata']['configure_user'], true)
